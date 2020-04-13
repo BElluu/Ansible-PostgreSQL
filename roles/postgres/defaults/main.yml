@@ -1,0 +1,9 @@
+---
+database_name: DATABASE_NAME
+user_name: USER_NAME
+user_password: USER_PASSWORD
+
+postgresql_packages:
+  - postgresql
+  - postgresql-contrib
+  - libpq-dev

@@ -1,0 +1,9 @@
+---
+- name: System is configured
+  hosts: localhost
+  connection: local
+  become: true
+  become_user: root
+  ignore_errors: true
+  roles:
+    - role: postgres

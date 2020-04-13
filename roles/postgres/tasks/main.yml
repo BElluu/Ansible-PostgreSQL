@@ -1,0 +1,4 @@
+---
+- include: setup_pg.yml
+- include: database_pg.yml
+- include: user_pg.yml

@@ -1,0 +1,10 @@
+---
+- name: Ensure user has access to the database
+  become: true
+  become_user: postgres
+  postgresql_user:
+    name: '{{ user_name }}'
+    password: '{{ user_password }}'
+    role_attr_flags: superuser
+    encrypted: true
+    state: present

@@ -1,0 +1,27 @@
+---
+- name: Ensure python3-psycopg2 package is present
+  package:
+    name: python3-psycopg2
+    state: present
+
+- name: Ensure PostgreSQL packages are installed
+  apt:
+    name: '{{ postgresql_packages }}'
+    state: present
+
+- name: Ensure all configured locales are present.
+  locale_gen: "name={{ item }} state=present"
+  with_items: 'en_US.UTF-8'
+  register: locale_gen_result
+
+- name: Force-restart PostgreSQL after new locales are generated.
+  service:
+    name: 'postgresql@11-main'
+    state: restarted
+  when: locale_gen_result.changed
+
+- name: Ensure the PostgreSQL service is running
+  service:
+    name: postgresql
+    state: started
+    enabled: true
